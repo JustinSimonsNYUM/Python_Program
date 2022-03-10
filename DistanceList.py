@@ -37,8 +37,8 @@ def loadDistanceList(fileName):
                 m += 1
     # combine the list of address ID pairs and the distance between the two for the final distance list.
     x = 0
-    for miles in tempDistanceList:
-        newMiles = miles + [float(milesList[x])]
-        distanceList.append(newMiles)
+    for addresses in tempDistanceList:
+        addressesAndMiles = addresses + [float(milesList[x])]
+        distanceList.append(addressesAndMiles)
         x += 1
 

@@ -33,7 +33,7 @@ if __name__ == '__main__':
         print("2. Print the total miles traveled by both trucks.")
         print("3. Print the info of one package at a specific time.")
         print("4. Print all packages and their info at a certain time.")
-        print("5. Exit the Program")
+        print("5. Exit the Program.")
         option = input("Chose an option (1,2,3,4, or 5): ")
         if option == "1":
             printAllTruckInfo()

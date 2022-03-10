@@ -322,7 +322,6 @@ def sendTrucks(packageTable):
             t2BucketValue = 0
             t2CurrentLocation = 0
         skipAddresses.clear()
-        skipAddressNum = 0
         # ninePackageFound is set to true if a 9:00 package is found.
         ninePackageFound = False
         # tenThirtyPackageFound is set to true if a 10:30 package is found.
@@ -345,6 +344,7 @@ def sendTrucks(packageTable):
                         if int(ap[0]) == tp:
                             tenThirtyPackageFound = True
 
+        skipAddressNum = 0
         # apFound set to true when an available package is found.
         apFound = False
         # find the next best location for truck 2.
@@ -374,15 +374,15 @@ def sendTrucks(packageTable):
                     if ap[2]:
                         for np in ninePackages:
                             if int(ap[0]) == np:
-                                if int(ap[1]) == int(t1NextLocation):
+                                if int(ap[1]) == int(t2NextLocation):
                                     apFound = True
-                                    t1CurrentLocation = t1NextLocation
+                                    t2CurrentLocation = t2NextLocation
                                     break
                     if apFound:
                         break
                     # if no available packages address equals the next location, add the address to skipAddresses.
                     if int(ap[0]) == 40:
-                        skipAddresses.append(int(t1NextLocation))
+                        skipAddresses.append(int(t2NextLocation))
                         skipAddressNum += 1
             # next go through those that need to be delivered before 10:30 if true.
             elif tenThirtyPackageFound:
@@ -532,7 +532,7 @@ def printAllTruckInfo():
 
 # function printTotalMiles prints the total mileage traveled by both trucks.
 def printTotalMiles():
-    print('\nTotal Miles traveled by both trucks: ' + str(totalMilesAfterRoute[0]))
+    print('\nTotal miles traveled by both trucks: ' + str(totalMilesAfterRoute[0]))
 
 
 # function printPackageAtTime receives the package hash table and prints one package with its status based on chosen time.
@@ -565,7 +565,7 @@ def printPackageAtTime(table):
             continue
         # asks user to try again if integer is not between 8 and 18.
         if (hour < 8) or (hour > 18):
-            print("incorrect Time. Try again.")
+            print("Incorrect time. Try again.")
             continue
         else:
             break
@@ -579,8 +579,8 @@ def printPackageAtTime(table):
             print("Sorry, you entered an incorrect value. Try again.")
             continue
         # asks user to try again if integer is not between 0 and 60.
-        if (minute < 0) or (minute >= 60) or (minute is None):
-            print("incorrect Time. Try again.")
+        if (minute < 0) or (minute >= 60):
+            print("Incorrect time. Try again.")
             continue
         else:
             break
@@ -760,7 +760,7 @@ def printAllPackagesAtTime(table):
                     printAtTime(package, "at the hub.")
 
             # if the package is in truck 2, then checks if its en route or at the hub.
-            if inT2:
+            elif inT2:
                 # gets the current route for truck 2.
                 truckLoad = truck2[bucket]
                 enRoute = False
