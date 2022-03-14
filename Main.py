@@ -5,22 +5,22 @@ student ID: 001120973
 # main file for the program.
 
 from Packages import loadPackages
-from Table import HashTable
+from HashTable import HashTable
 from DistanceList import loadDistanceList
 from Greedy import setGreedyTable
 from Trucks import sendTrucks, printAllTruckInfo, printTotalMiles, printPackageAtTime, printAllPackagesAtTime
 
 # instance of hash table for all packages.
-table = HashTable()
+hTable = HashTable()
 
 # Load addresses to Table.
-loadPackages('packageData.csv', table)
+loadPackages('packageData.csv', hTable)
 # Load distances from one location to another for all addresses.
 loadDistanceList('distanceData.csv')
 # sets the greedy table to sort the distances of all addresses.
 setGreedyTable()
 # starts the main delivery function.
-sendTrucks(table)
+sendTrucks(hTable)
 
 # this holds the user interface code. The user can choose from 5 different options.
 if __name__ == '__main__':
@@ -40,9 +40,9 @@ if __name__ == '__main__':
         elif option == "2":
             printTotalMiles()
         elif option == "3":
-            printPackageAtTime(table)
+            printPackageAtTime(hTable)
         elif option == "4":
-            printAllPackagesAtTime(table)
+            printAllPackagesAtTime(hTable)
         elif option == "5":
             isExit = False
         else:
